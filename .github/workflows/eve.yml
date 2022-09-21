@@ -13,7 +13,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
-          ref: master
+          ref: main
 
       - uses: actions/checkout@v3
       - name: checkout
