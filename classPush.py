@@ -36,8 +36,8 @@ template_id_noclass = os.environ["TEMPLATE_ID_NOCLASS"]
 user_id_list = [
     {'user_id': user_id_1, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
      'city': '110108'}
-    ,{'user_id': user_id_2, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
-     'city': '110108'}
+    # ,{'user_id': user_id_2, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
+    #  'city': '110108'}
 ]
 
 week = '6'

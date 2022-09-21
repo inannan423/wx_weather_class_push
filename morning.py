@@ -23,7 +23,7 @@ template_id = os.environ["TEMPLATE_ID"]
 
 # 用户ID
 user_id_1 = os.environ["USER_ID_1"]
-user_id_2 = os.environ["USER_ID_2"]
+user_id_2 = os.environ["USER_ID_2"]  # 如果只有一个人，删去即可
 
 # 以上环境变量不需要修改，只需要在 github 的 secrets 中添加即可
 
@@ -42,8 +42,9 @@ user_id_2 = os.environ["USER_ID_2"]
 '''
 user_id_list = [
     {'user_id': user_id_1, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
-     'city': '110108'},{'user_id': user_id_2, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
      'city': '110108'}
+    # ,{'user_id': user_id_2, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
+    #  'city': '110108'}
 ]
 
 ##################################
