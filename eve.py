@@ -25,12 +25,21 @@ template_id = os.environ["TEMPLATE_ID_EVE"]
 user_id_1 = os.environ["USER_ID_1"]
 user_id_2 = os.environ["USER_ID_2"]
 
+# 以上环境变量不需要修改，只需要在 github 的 secrets 中添加即可
+
+##################################
+# 修改用户信息                     #
+##################################
+
 user_id_list = [
     {'user_id': user_id_1, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
      'city': '110108'}, {'user_id': user_id_2, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
                          'city': '110108'}
 ]
 
+##################################
+# 以下为主代码，不需要修改           #
+##################################
 
 # 好听的情话 API
 def get_words():
