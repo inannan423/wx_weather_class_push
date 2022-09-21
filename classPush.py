@@ -5,9 +5,6 @@ import requests  # http 请求库
 import datetime
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage
-########################
-# 填写账号密码
-########################
 
 id = os.environ["STUDENT_ID"]  # 学号
 pwd = os.environ["PASSWORD"]  # 密码
