@@ -172,7 +172,8 @@ def send_message():
         }
 
         if (lesson['kcmc']=='本节无课'):
-            res = wm.send_template(user_id, template_id_noclass, data)
+            # res = wm.send_template(user_id, template_id_noclass, data)
+            print('无课')
         else:
             res = wm.send_template(user_id, template_id_class, data)
         print(res)
