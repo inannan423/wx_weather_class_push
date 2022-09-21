@@ -18,9 +18,6 @@ app_secret = os.environ["APP_SECRET"]
 # 高德天气接口密钥 key
 key = os.environ["KEY"]
 
-# Server酱推送
-sckey = os.environ["SCKEY"]
-
 # 微信公众号 模板id
 template_id = os.environ["TEMPLATE_ID"]
 
@@ -42,10 +39,6 @@ user_id_list = [
      'city': '110108'}
 ]
 
-def push():
-    #text为推送的title,desp为推送的描述
-    url = 'https://sc.ftqq.com/%s.send?text=自动推送完成'%sckey
-    requests.get(url)
 
 
 # 好听的情话 API
@@ -89,7 +82,7 @@ def get_birthday(birthday):
 
 
 # 发送消息 支持批量用户
-def send_message():
+def wx_push():
     for user in user_id_list:
         user_id = user.get('user_id')
         name = user.get('name')
@@ -122,5 +115,4 @@ def send_message():
         print(res)
 
 
-send_message()
-push()
+wx_push()
