@@ -84,7 +84,7 @@ def getNowClass():
         hour += 1
         minute -= 60
     # 拼接为时间格式
-    if hour<=10:
+    if hour<10:
         nowTime = '0' + str(hour) + ':' + str(minute) + ':' + str(second)
     else :
         nowTime = str(hour) + ':' + str(minute) + ':' + str(second)
