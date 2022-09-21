@@ -31,7 +31,7 @@ user_id_2 = os.environ["USER_ID_2"]
        name: 昵称
        date: 相识日期
    birthday: 生日
-       city: 城市编码，api接口文档处查询
+       city: 城市编码，在高德 api 接口文档处查询
 '''
 user_id_list = [
     {'user_id': user_id_1, "name": 'Orange', "date": "2021-04-02", "birthday": "05-28",
@@ -41,7 +41,7 @@ user_id_list = [
 
 
 
-# 好听的情话 API
+# 随机情话 API
 def get_words():
     words = requests.get("https://api.shadiao.pro/chp")
     if words.status_code != 200:
