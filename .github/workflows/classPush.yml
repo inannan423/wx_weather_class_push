@@ -1,0 +1,34 @@
+name: class_1_2
+
+on:
+  repository_dispatch:
+    types: [class_1_2]
+  workflow_dispatch:
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    name: Push information for the 1_2 lessons
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+
+      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: sender
+        run: pip install -r ./requirements.txt && python ./classPush.py
+
+    env:
+      STUDENT_ID: ${{ secrets.STUDENT_ID }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      TEMPLATE_ID_CLASS: ${{ secrets.TEMPLATE_ID_CLASS }}
+      TEMPLATE_ID_NOCLASS: ${{ secrets.TEMPLATE_ID_NOCLASS }}
+      USER_ID_1: ${{secrets.USER_ID_1}}
+      USER_ID_2: ${{secrets.USER_ID_2}}

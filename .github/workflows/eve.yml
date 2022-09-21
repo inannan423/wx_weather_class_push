@@ -1,0 +1,33 @@
+name: evening
+
+on:
+  repository_dispatch:
+    types: [evening]
+  workflow_dispatch:
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    name: Good Evening!
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+
+      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: sender
+        run: pip install -r ./requirements.txt && python ./eve.py
+
+    env:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_SECRET: ${{ secrets.APP_SECRET }}
+      KEY: ${{ secrets.KEY }}
+      TEMPLATE_ID_EVE: ${{ secrets.TEMPLATE_ID_EVE }}
+      SCKEY: ${{secrets.SCKEY}}
+      USER_ID_1: ${{secrets.USER_ID_1}}
+      USER_ID_2: ${{secrets.USER_ID_2}}
