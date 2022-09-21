@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: push
-        run: pip install -r ./requirements.txt && python ./classPush.py
+        run: pip install -r ./packages.txt && python ./classPush.py
 
     env:
       STUDENT_ID: ${{ secrets.STUDENT_ID }}
