@@ -20,7 +20,6 @@ user_id_2 = os.environ["USER_ID_2"]
 template_id_class = os.environ["TEMPLATE_ID_CLASS"]
 template_id_noclass = os.environ["TEMPLATE_ID_NOCLASS"]
 
-
 # "jsxm": "老师", // 教师姓名
 # "jsmc": "一教101", // 教室名称
 # "jssj": "9:35", // 结束时间
@@ -39,7 +38,7 @@ user_id_list = [
 
 week = '6'
 table = [[{'jsxm': '无', 'jsmc': '无', 'jssj': '00:00', 'kssj': '00:00', 'kkzc': '0', 'kcsj': '00000', 'kcmc': '本节无课',
-              'sjbz': '0'} for i in range(1, 100)] for j in range(1, 100)]
+           'sjbz': '0'} for i in range(1, 100)] for j in range(1, 100)]
 
 
 # 获取当前日期
@@ -64,8 +63,12 @@ def getWeek():
 def getWeekDay():
     d = datetime.datetime.now()
     weekd = d.weekday() + 1
+    # 如果时间在16：00-23：59之间，那么weekd+1
+    if 16 <= d.hour <= 23:
+        weekd += 1
     print("星期" + str(weekd))
     return int(weekd)
+
 
 # 判断当前所在第几节课
 def getNowClass():
@@ -81,12 +84,12 @@ def getNowClass():
         hour += 1
         minute -= 60
     # 拼接为时间格式
-    if hour<10:
+    if hour < 10:
         nowTime = '0' + str(hour) + ':' + str(minute) + ':' + str(second)
-    else :
+    else:
         nowTime = str(hour) + ':' + str(minute) + ':' + str(second)
 
-    if hour==24:
+    if hour == 24:
         nowTime = '00' + ':' + str(minute) + ':' + str(second)
     print("现在时间：" + nowTime)
     # 判断当前时间所在第几节课
@@ -111,6 +114,7 @@ def getNowClass():
         return 10
     else:
         return -1
+
 
 def Crawl():
     loginLink = "http://newjwxt.bjfu.edu.cn/app.do?method=authUser&xh=" + id + "&pwd=" + pwd
@@ -149,21 +153,23 @@ def QueryClass():
     print(table[nowWd][nowClass])
     return table[nowWd][nowClass]
 
+
 # 随机文字颜色
 def get_random_color():
     return "#%06x" % random.randint(0, 0xFFFFFF)
+
 
 # 发送消息 支持批量用户
 def send_message():
     for user in user_id_list:
         user_id = user.get('user_id')
-        lesson=QueryClass()
+        lesson = QueryClass()
         client = WeChatClient(app_id, app_secret)
         wm = WeChatMessage(client)
         # 获取今天日期
         # Date=today.strftime("%Y-%m-%d")
         print(lesson['kcmc'])
-        ks=lesson['kcsj'][1] + lesson['kcsj'][2]+'~'+lesson['kcsj'][3] + lesson['kcsj'][4]
+        ks = lesson['kcsj'][1] + lesson['kcsj'][2] + '~' + lesson['kcsj'][3] + lesson['kcsj'][4]
         data = {
             "kcmc": {"value": str(lesson['kcmc']), "color": get_random_color()},
             "sksj": {"value": str(ks), "color": get_random_color()},
@@ -171,12 +177,13 @@ def send_message():
             "jsxm": {"value": str(lesson['jsxm']), "color": get_random_color()},
         }
 
-        if (lesson['kcmc']=='本节无课'):
+        if (lesson['kcmc'] == '本节无课'):
             # res = wm.send_template(user_id, template_id_noclass, data)
             print('无课')
         else:
             res = wm.send_template(user_id, template_id_class, data)
         print(res)
+
 
 if __name__ == "__main__":
     week = str(getWeek())
